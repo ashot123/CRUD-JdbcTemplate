@@ -11,25 +11,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
-<h3>Add / Edit Employee!!!</h3>
+<h3>Add / Edit Employee</h3>
 
 <form:form method="post" action="/employee" commandName="employee">
     <div class="table-responsive">
         <table class="table table-bordered" style="width: 300px">
             <tr>
-                <td>Id :</td>
-                <td > <form:input type="text" path="id" readonly="true" cssStyle="background: lightgrey" /></td>
+                <td>Id:</td>
+                <td><form:input type="text" path="id" readonly="true" cssStyle="background: lightgrey" /></td>
             </tr>
             <tr>
-                <td>Name :</td>
+                <td>Name:</td>
                 <td><form:input type="text" path="name"/></td>
             </tr>
             <tr>
-                <td>Age :</td>
+                <td>Age:</td>
                 <td><form:input type="text" path="age"/></td>
             </tr>
             <tr>
-                <td>Department :</td>
+                <td>Department:</td>
                 <td><form:input type="text" path="dept"/></td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@
             </td>
             <td width="60" align="center">
                 <spring:url value="/delete/${employee.id}" var="deleteURL" />
-                <a href="${deleteURL}">Delete</a>
+                <a onclick="return confirm('Do you want delete an employee?')"  href="${deleteURL}">Delete</a>
             </td>
         </tr>
     </c:forEach>
