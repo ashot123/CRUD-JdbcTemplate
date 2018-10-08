@@ -44,7 +44,6 @@ public class EmployeeController {
 
         model.addObject("employee", employee);
         model.addObject("employeeList", employeeList);
-        model.setViewName("employees");
         return model;
     }
 
