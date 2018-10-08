@@ -12,12 +12,12 @@ import java.util.List;
 
 @Controller
 public class EmployeeController {
+
     @Autowired
     private EmployeeDAO employeeDAO;
 
     /**
      * Redirect to necessary mapping.`
-     * @return
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView dummy() {
@@ -26,10 +26,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employee", method = RequestMethod.POST)
     public ModelAndView saveEmployee(@ModelAttribute("employee") Employee employee) {
-
         Integer id = employee.getId();
-        //Employee id = employeeDAO.getEmployeeById(employee.getId());
-
         if (id == null) {
             employeeDAO.saveEmployee(employee);
         } else {
@@ -47,7 +44,7 @@ public class EmployeeController {
 
         model.addObject("employee", employee);
         model.addObject("employeeList", employeeList);
-
+        model.setViewName("employees");
         return model;
     }
 

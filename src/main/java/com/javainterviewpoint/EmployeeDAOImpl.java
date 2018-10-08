@@ -11,7 +11,11 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+@Repository
+@Transactional
 public class EmployeeDAOImpl implements EmployeeDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -22,7 +26,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     // Saving a new Employee
-    private final String INSERT_SQL = "INSERT INTO Employee2 (name,dept,age) values(?,?,?)";
+    private final String INSERT_SQL = "INSERT INTO employee2 (name,dept,age) values(?,?,?)";
 
     public void saveEmployee(final Employee employee) {
         KeyHolder holder = new GeneratedKeyHolder();
@@ -45,7 +49,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     // Getting a particular Employee
     public Employee getEmployeeById(int id) {
-        String sql = "select * from Employee2 where id=?";
+        String sql = "select * from employee2 where id=?";
         Employee employee = (Employee) jdbcTemplate.queryForObject(sql, new Object[]{id}, new RowMapper() {
             @Override
             public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -62,7 +66,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     // Getting all the Employees
     public List<Employee> getAllEmployees() {
-        String sql = "select * from Employee2";
+        String sql = "select * from employee2";
 
         List<Employee> employeeList = jdbcTemplate.query(sql, new ResultSetExtractor<List<Employee>>() {
             @Override
@@ -86,8 +90,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     // Updating a particular Employee
     public void updateEmployee(Employee employee) {
-        String sql = "update Employee2 set age =?, dept=?,name=? where id=?";
-        jdbcTemplate.update(sql, employee.getName(), employee.getAge(), employee.getDept(), employee.getId());
+        String sql = "update employee2 set name=?, dept=?,age =? where id=?";
+        jdbcTemplate.update(sql, employee.getName(), employee.getDept(), employee.getAge(), employee.getId());
     }
 
     // Deletion of a particular Employee

@@ -9,15 +9,15 @@
     <title>Insert title here</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
-<body >
+<body>
 <h3>Add / Edit Employee!!!</h3>
 
 <form:form method="post" action="/employee" commandName="employee">
     <div class="table-responsive">
-        <table class="table table-bordered" style="width: 300px" >
+        <table class="table table-bordered" style="width: 300px">
             <tr>
                 <td>Id :</td>
-                <td><form:input type="text" path="id" disabled="true"/></td>
+                <td > <form:input type="text" path="id" readonly="true" cssStyle="background: lightgrey" /></td>
             </tr>
             <tr>
                 <td>Name :</td>
